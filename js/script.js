@@ -68,7 +68,7 @@ const displayItem = item => {
     // https://www.npmjs.com/package/leaflet.awesome-markers
 
     let disponible = true;
-    if (item.status === "OPEN"){
+    if (item.status === "OPEN" && item.available_bike_stands != '0'){
         //alert("fermée");
         disponible = false;
         var color = "green";
@@ -86,7 +86,7 @@ const displayItem = item => {
 
     //let myIcon = L.divIcon({className: 'my-div-icon'});
     L.marker([item.position["lat"], item.position["lng"]], {icon: colorMarker}).addTo(mymap)
-        .bindPopup(`<b>${item.name}</b><br />I am a popup.`).openPopup();
+        .bindPopup(`<b>${item.name}</b><br />${item.available_bike_stands} vélos disponibles`).openPopup();
     //m.setStyle({color:"#ff0000", weight:3, fillColor:"#00ff00"});
     let popup = L.popup();
 }
