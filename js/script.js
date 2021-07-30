@@ -77,7 +77,7 @@ const displayItem = item => {
         var color = "red";
     }
 
-    var redMarker = L.AwesomeMarkers.icon({
+    var colorMarker = L.AwesomeMarkers.icon({
 
         markerColor: color
     });
@@ -85,7 +85,7 @@ const displayItem = item => {
 
 
     //let myIcon = L.divIcon({className: 'my-div-icon'});
-    L.marker([item.position["lat"], item.position["lng"]], {icon: redMarker}).addTo(mymap)
+    L.marker([item.position["lat"], item.position["lng"]], {icon: colorMarker}).addTo(mymap)
         .bindPopup(`<b>${item.name}</b><br />I am a popup.`).openPopup();
     //m.setStyle({color:"#ff0000", weight:3, fillColor:"#00ff00"});
     let popup = L.popup();
