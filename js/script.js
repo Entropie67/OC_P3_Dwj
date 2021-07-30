@@ -13,7 +13,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap);
 
 
-
+/*
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
@@ -22,7 +22,7 @@ function onMapClick(e) {
 }
 
 mymap.on('click', onMapClick);
-
+*/
 // ---------------------------------------------------------------------------------------------------------------
 
 /* voici à quoi ressemble une station :
@@ -64,9 +64,30 @@ const displayItem = item => {
     // Ce qui m'intéresse : "name", "position",
     console.log(item.name);
     console.log(item.position["lat"]);
+    console.log(item.status, item.available_bikes);
+    // https://www.npmjs.com/package/leaflet.awesome-markers
 
-    L.marker([item.position["lat"], item.position["lng"]]).addTo(mymap)
+    let disponible = true;
+    if (item.status === "OPEN"){
+        //alert("fermée");
+        disponible = false;
+        var color = "green";
+    }else {
+        disponible = true;
+        var color = "red";
+    }
+
+    var redMarker = L.AwesomeMarkers.icon({
+
+        markerColor: color
+    });
+
+
+
+    //let myIcon = L.divIcon({className: 'my-div-icon'});
+    L.marker([item.position["lat"], item.position["lng"]], {icon: redMarker}).addTo(mymap)
         .bindPopup(`<b>${item.name}</b><br />I am a popup.`).openPopup();
+    //m.setStyle({color:"#ff0000", weight:3, fillColor:"#00ff00"});
     let popup = L.popup();
 }
 
