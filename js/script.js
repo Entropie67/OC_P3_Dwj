@@ -82,13 +82,21 @@ const displayItem = item => {
         markerColor: color
     });
 
-
+    const information =  (e) => {
+        let info = document.querySelector('#info');
+        let formu = document.querySelector('form');
+        formu.style.display = "block";
+        info.innerHTML = `<p><b>${item.name}</b></p>`;
+    }
 
     //let myIcon = L.divIcon({className: 'my-div-icon'});
-    L.marker([item.position["lat"], item.position["lng"]], {icon: colorMarker}).addTo(mymap)
-        .bindPopup(`<b>${item.name}</b><br />${item.available_bike_stands} vélos disponibles`).openPopup();
+    let station = L.marker([item.position["lat"], item.position["lng"]], {icon: colorMarker}).addTo(mymap)
+        .bindPopup(`<b>${item.name}</b><br />${item.available_bike_stands} vélos disponibles`);
     //m.setStyle({color:"#ff0000", weight:3, fillColor:"#00ff00"});
-    let popup = L.popup();
+
+    station.openPopup();
+    station.on('click', information);
+
 }
 
 fetch(url, {method: 'GET', header: {'Access-Control-Allow-Origin': ' http://localhost:63342/velib/url'}, mode: 'cors'})

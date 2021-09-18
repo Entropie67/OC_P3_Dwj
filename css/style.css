@@ -7,3 +7,16 @@
 body {
     background-color: wheat;
 }
+
+h1 {
+    text-align: center;
+}
+
+footer, header, #map, #formulaire, #tuto {
+    border: solid 3px;
+    padding: 10px;
+}
+
+form {
+    display: none;
+}
